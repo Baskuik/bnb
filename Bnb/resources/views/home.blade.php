@@ -13,7 +13,7 @@
     }
 </style>
 
-<<body>
+<body>
     @include('layout')
 
     <div class="voorzieningen-container">
