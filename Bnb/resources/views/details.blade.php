@@ -8,6 +8,6 @@
 </head>
 <body>
     @include('layout')
-    hey
+    
 </body>
 </html>
