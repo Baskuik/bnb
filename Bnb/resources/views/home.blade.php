@@ -5,15 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Home</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/homestyle.css') }}" />
 </head>
 
 <body>
     @include('layout')
 
     <div class="hometext">
-                <h1>Apartement Ruinerwold</h1> <br>
-                <p>115 Dokter Larijweg, 7961 NR Ruinerwold, Nederland</p>
+        <h1>Apartement Ruinerwold</h1> <br>
+        <p>115 Dokter Larijweg, 7961 NR Ruinerwold, Nederland</p>
     </div>
 
     <div class="slider-container">
