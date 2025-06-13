@@ -88,12 +88,12 @@
 
             // Modal openen bij klikken op foto
             images.forEach(img => {
-    img.addEventListener('click', () => {
-        console.log('Clicked image src:', img.src);
-        modal.style.display = 'flex';
-        modalImg.src = img.src;
-    });
-});
+                img.addEventListener('click', () => {
+                    console.log('Clicked image src:', img.src);
+                    modal.style.display = 'flex';
+                    modalImg.src = img.src;
+                });
+            });
 
 
             // Modal sluiten met kruisje
