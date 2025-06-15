@@ -20,36 +20,34 @@
     max-width: 1000px;
     margin-left: 30px;
     padding-right: 20px; 
+    justify-content: center;
 }
 .informatie-foto {
     width: 100px;
     height: 100px;
     object-fit: cover;
     border-radius: 10px;
+    margin-left: 50px;
 }
 
 .informatie-tekst {
      padding: 20px;    
     border: 2px solid;  
-    border-radius: 8px;      
+    border-radius: 8px;
 }
 
 .accomodatie-titel{
     display: flex;
     align-items: flex-start;
     max-width: 1000px;
-    margin-left: 30px;
-    padding-left: 75px; 
+    padding-left: 70px; 
+    justify-content: center;
 }
 
-.icon-persoon {
-  font-size: 3rem; 
-}
-.accommodatie-omgeving-header {
+.icons {
     display: flex;
     align-items: center; 
     gap: 10px; 
-    margin-left: 100px; 
 }
 
 .accommodatie-omgeving-header i {
@@ -59,4 +57,88 @@
 
 .accommodatie-omgeving-header h1 {
     margin: 0; 
+}
+.omgeving-container {
+    display: flex;
+    justify-content: center; 
+    gap: 50px;
+    margin: 40px auto;
+    max-width: 1000px;
+    flex-wrap: wrap;
+}
+
+.omgeving-col {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.omgeving-col h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+}
+
+.omgeving-col h2 i {
+    margin-right: 10px;
+}
+
+.omgeving-col ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.omgeving-col li {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.omgeving-col h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+}
+
+.omgeving-col ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.omgeving-col li {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.luchthaven {
+    margin-top: 50px;
+}
+.natuur {
+    margin-top: 60px;
+} 
+.ov {
+    margin-top: 63px;
+}
+
+.faciliteiten-titel {
+    display: flex;
+    align-items: flex-start;
+    max-width: 1000px;
+    padding-left: 70px;
+    margin-left: 120px; 
+    justify-content: center;
+}
+.faciliteiten-container {
+    display: flex;
+    justify-content: center; 
+    gap: 50px;
+    margin: 40px auto;
+    max-width: 1000px;
+    flex-wrap: wrap;
+}
+.omgeving-col {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
 }

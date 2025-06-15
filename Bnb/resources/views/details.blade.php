@@ -42,11 +42,105 @@
         <h1 style="color: blue">Accomodatie-omgeving</h1>
     </div>
 
-    <div class="accommodatie-omgeving-header">
-    <i class="fa-solid fa-person-walking"></i>
-    <h1>Wat is er in de buurt?</h1>
+<div class="omgeving-container">
+    <div class="omgeving-col">
+        <h2 class="icons"><i class="fa-solid fa-person-walking"></i> Wat is er in de buurt?</h2>
+        <ul>
+            <li>Nationaal Park Dwingelderveld - 8 km</li>
+            <li>Boswachterijen - 9 km</li>
+            <li>Wijngaard Echternesebroek - 10 km</li>
+            <li>Bungalowpark Lanka - 10 km</li>
+            <li>Sportpark de Groene Long - 13 km</li>
+            <li>Bezoekerscentrum de Wheem - 16 km</li>
+            <li>Boas BV - 17 km</li>
+            <li>Nationaal Park Drents-Friese Woud - 17 km</li>
+        </ul>
+
+        <div class="luchthaven">
+        <h2 class="icons"><i class="fa-solid fa-plane"></i> Dichtstbijzijnde luchthavens</h2>
+        <ul>
+            <li>Luchthaven Groningen Eelde - 59 km</li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="omgeving-col">
+        <h2 class="icons"><i class="fa-solid fa-utensils"></i> Restaurants & cafés</h2>
+        <ul>
+            <li>Restaurant De Parel - 650 m</li>
+            <li>Café/bar Reinders - 600 m</li>
+            <li>Restaurant Forellen Visvijvers de Woldstek - 2,4 km</li>
+        </ul>
+    
+        <div class="natuur">
+        <h2 class="icons"><i class="fa-solid fa-mountain"></i> Natuurschoon</h2>
+        <ul>
+            <li>Bos - Ruinerwold - 4,5 km</li>
+        </ul>
+        </div>
+
+        <div class=" ov">
+        <h2 class="icons"><i class="fa-solid fa-train"></i> Openbaar vervoer</h2>
+        <ul>
+            <li>Trein - station Meppel - 8 km</li>
+            <li>Trein - station Steenwijk - 16 km</li>
+        </ul>
+        </div>
+    </div>
+</div>
 </div>
 
+<div class="faciliteiten-titel">
+        <h1 style="color: blue">Faciliteiten in Appartement Oosteinde</h1>
+    </div>
+
+<div class="faciliteiten-container">
+    <div class="faciliteiten-col">
+        <h2 class="icons"><i class="fa-solid fa-user"></i></i> Ideaal voor je verblijf</h2>
+        <ul>
+            <li>Nationaal Park Dwingelderveld - 8 km</li>
+            <li>Boswachterijen - 9 km</li>
+            <li>Wijngaard Echternesebroek - 10 km</li>
+            <li>Bungalowpark Lanka - 10 km</li>
+            <li>Sportpark de Groene Long - 13 km</li>
+            <li>Bezoekerscentrum de Wheem - 16 km</li>
+            <li>Boas BV - 17 km</li>
+            <li>Nationaal Park Drents-Friese Woud - 17 km</li>
+        </ul>
+
+        <div class="luchthaven">
+        <h2 class="icons"><i class="fa-solid fa-plane"></i> Dichtstbijzijnde luchthavens</h2>
+        <ul>
+            <li>Luchthaven Groningen Eelde - 59 km</li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="faciliteiten-col">
+        <h2 class="icons"><i class="fa-solid fa-utensils"></i> Restaurants & cafés</h2>
+        <ul>
+            <li>Restaurant De Parel - 650 m</li>
+            <li>Café/bar Reinders - 600 m</li>
+            <li>Restaurant Forellen Visvijvers de Woldstek - 2,4 km</li>
+        </ul>
+    
+        <div class="natuur">
+        <h2 class="icons"><i class="fa-solid fa-mountain"></i> Natuurschoon</h2>
+        <ul>
+            <li>Bos - Ruinerwold - 4,5 km</li>
+        </ul>
+        </div>
+
+        <div class=" ov">
+        <h2 class="icons"><i class="fa-solid fa-train"></i> Openbaar vervoer</h2>
+        <ul>
+            <li>Trein - station Meppel - 8 km</li>
+            <li>Trein - station Steenwijk - 16 km</li>
+        </ul>
+        </div>
+    </div>
+</div>
+</div>
     
 
 </body>
