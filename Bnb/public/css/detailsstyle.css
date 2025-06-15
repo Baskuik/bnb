@@ -204,3 +204,7 @@
     display: flex;
     align-items: center;
 }
+
+.huisregels-titel {
+    padding-right: 1130px;
+}

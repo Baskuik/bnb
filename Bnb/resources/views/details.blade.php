@@ -169,7 +169,7 @@
             <li><i class="fa-solid fa-check check"></i> Bovenverdieping alleen bereikbaar per trap</li>
         </ul>
         <ul>
-            <li><h2 class="icons"> Buiten</h2></li>
+            <li><h2 class="icons"> <i class="fa-solid fa-sun"></i> Buiten</h2></li>
             <li><i class="fa-solid fa-check check"></i> Buitenmeubels</li>
             <li><i class="fa-solid fa-check check"></i> Terras</li>
             <li><i class="fa-solid fa-check check"></i> Tuin</li>
@@ -191,13 +191,44 @@
             <li><i class="fa-solid fa-check check"></i> Hengelsport</li>
         </ul>
 
-        <h2 class="icons"><i class="fa-solid fa-tree"></i> Buiten & Uitzicht</h2>
+        <h2 class="icons"><i class="fa-solid fa-bug"></i> Buiten & Uitzicht</h2>
         <ul>
             <li><i class="fa-solid fa-check check"></i> Uitzicht</li>
             <li><i class="fa-solid fa-check check"></i> Uitzicht op de tuin</li>
             <li><i class="fa-solid fa-check check"></i> Uitzicht op het weiland</li>
         </ul>
-    </div>
+        <ul>
+            <li><h2 class="icons"><i class="fa-solid fa-door-open"></i> Kenmerken gebouw</h2></li>
+             <li><i class="fa-solid fa-check check"></i> Vrijstaand</li>
+        </ul>
+        <ul>
+            <li><h2 class="icons"><i class="fa-solid fa-sink"></i> Diensten receptie</h2></li>
+            <li><i class="fa-solid fa-check check"></i> Factuur wordt versterkt</li>
+        </ul>
+        <ul>
+            <li><h2 class="icons"></h2><i class="fa-solid fa-people-roof"></i> Entertainment en familiediensten</li>
+            <li><i class="fa-solid fa-check check"></i> Bordspellen en puzzels</li>
+        </ul>
+        <ul>
+            <li><h2> Overige</h2></li>
+            <li><i class="fa-solid fa-check check"></i> Niet-roken in gehele accommodatie</li>
+            <li><i class="fa-solid fa-check check"></i> Verwarming</li>
+            <li><i class="fa-solid fa-check check"></i> Rookvrije kamers</li>
+        </ul>
+        <ul>
+            <li><h2 class="icons"><i class="fa-solid fa-lock"></i></h2></li>
+            <li><i class="fa-solid fa-check check"></i> Rookmelder</li>
+        </ul>
+        <ul>
+            <li><h2 class="icons"><i class="fa-solid fa-comments"></i> Gesproken talen</h2></li>
+            <li><i class="fa-solid fa-check check"></i> Duits</li>
+            <li><i class="fa-solid fa-check check"></i> Engels</li>
+            <li><i class="fa-solid fa-check check"></i> Frans</li>
+            <li><i class="fa-solid fa-check check"></i> Nederlands</li>
+        </ul>
+</div>
+<div class="huisregels-titel">
+    <h2>Huisregels</h2>
 </div>
 
 
