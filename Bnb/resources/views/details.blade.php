@@ -37,111 +37,171 @@
             Duits,Engels,Frans,Nederlands
         </p>
     </div>
-    
+
     <div class="accomodatie-titel">
         <h1 style="color: blue">Accomodatie-omgeving</h1>
     </div>
 
-<div class="omgeving-container">
-    <div class="omgeving-col">
-        <h2 class="icons"><i class="fa-solid fa-person-walking"></i> Wat is er in de buurt?</h2>
-        <ul>
-            <li>Nationaal Park Dwingelderveld - 8 km</li>
-            <li>Boswachterijen - 9 km</li>
-            <li>Wijngaard Echternesebroek - 10 km</li>
-            <li>Bungalowpark Lanka - 10 km</li>
-            <li>Sportpark de Groene Long - 13 km</li>
-            <li>Bezoekerscentrum de Wheem - 16 km</li>
-            <li>Boas BV - 17 km</li>
-            <li>Nationaal Park Drents-Friese Woud - 17 km</li>
-        </ul>
+    <div class="omgeving-container">
+        <div class="omgeving-col">
+            <h2 class="icons"><i class="fa-solid fa-person-walking"></i> Wat is er in de buurt?</h2>
+            <ul>
+                <li>Nationaal Park Dwingelderveld - 8 km</li>
+                <li>Boswachterijen - 9 km</li>
+                <li>Wijngaard Echternesebroek - 10 km</li>
+                <li>Bungalowpark Lanka - 10 km</li>
+                <li>Sportpark de Groene Long - 13 km</li>
+                <li>Bezoekerscentrum de Wheem - 16 km</li>
+                <li>Boas BV - 17 km</li>
+                <li>Nationaal Park Drents-Friese Woud - 17 km</li>
+            </ul>
 
-        <div class="luchthaven">
-        <h2 class="icons"><i class="fa-solid fa-plane"></i> Dichtstbijzijnde luchthavens</h2>
-        <ul>
-            <li>Luchthaven Groningen Eelde - 59 km</li>
-        </ul>
+            <div class="luchthaven">
+                <h2 class="icons"><i class="fa-solid fa-plane"></i> Dichtstbijzijnde luchthavens</h2>
+                <ul>
+                    <li>Luchthaven Groningen Eelde - 59 km</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="omgeving-col">
+            <h2 class="icons"><i class="fa-solid fa-utensils"></i> Restaurants & cafés</h2>
+            <ul>
+                <li>Restaurant De Parel - 650 m</li>
+                <li>Café/bar Reinders - 600 m</li>
+                <li>Restaurant Forellen Visvijvers de Woldstek - 2,4 km</li>
+            </ul>
+
+            <div class="natuur">
+                <h2 class="icons"><i class="fa-solid fa-mountain"></i> Natuurschoon</h2>
+                <ul>
+                    <li>Bos - Ruinerwold - 4,5 km</li>
+                </ul>
+            </div>
+
+            <div class=" ov">
+                <h2 class="icons"><i class="fa-solid fa-train"></i> Openbaar vervoer</h2>
+                <ul>
+                    <li>Trein - station Meppel - 8 km</li>
+                    <li>Trein - station Steenwijk - 16 km</li>
+                </ul>
+            </div>
         </div>
     </div>
-
-    <div class="omgeving-col">
-        <h2 class="icons"><i class="fa-solid fa-utensils"></i> Restaurants & cafés</h2>
-        <ul>
-            <li>Restaurant De Parel - 650 m</li>
-            <li>Café/bar Reinders - 600 m</li>
-            <li>Restaurant Forellen Visvijvers de Woldstek - 2,4 km</li>
-        </ul>
-    
-        <div class="natuur">
-        <h2 class="icons"><i class="fa-solid fa-mountain"></i> Natuurschoon</h2>
-        <ul>
-            <li>Bos - Ruinerwold - 4,5 km</li>
-        </ul>
-        </div>
-
-        <div class=" ov">
-        <h2 class="icons"><i class="fa-solid fa-train"></i> Openbaar vervoer</h2>
-        <ul>
-            <li>Trein - station Meppel - 8 km</li>
-            <li>Trein - station Steenwijk - 16 km</li>
-        </ul>
-        </div>
     </div>
-</div>
-</div>
 
-<div class="faciliteiten-titel">
+    <div class="faciliteiten-titel">
         <h1 style="color: blue">Faciliteiten in Appartement Oosteinde</h1>
     </div>
-
-<div class="faciliteiten-container">
+    <div class="faciliteiten-container">
     <div class="faciliteiten-col">
-        <h2 class="icons"><i class="fa-solid fa-user"></i></i> Ideaal voor je verblijf</h2>
+        <div class="ideaal">
+        <h2 class="icons"><i class="fa-solid fa-user"></i> Ideaal voor je verblijf</h2>
         <ul>
-            <li>Nationaal Park Dwingelderveld - 8 km</li>
-            <li>Boswachterijen - 9 km</li>
-            <li>Wijngaard Echternesebroek - 10 km</li>
-            <li>Bungalowpark Lanka - 10 km</li>
-            <li>Sportpark de Groene Long - 13 km</li>
-            <li>Bezoekerscentrum de Wheem - 16 km</li>
-            <li>Boas BV - 17 km</li>
-            <li>Nationaal Park Drents-Friese Woud - 17 km</li>
+            <li><i class="fa-solid fa-check check"></i> Gratis parkeergelegenheid</li>
+            <li><i class="fa-solid fa-check check"></i> Parkeren</li>
+            <li><i class="fa-solid fa-check check"></i> Gratis WiFi</li>
+            <li><i class="fa-solid fa-check check"></i> Rookvrije kamers</li>
+            <li><i class="fa-solid fa-check check"></i> Flatscreen-Tv</li>
+            <li><i class="fa-solid fa-check check"></i> Keuken</li>
         </ul>
-
-        <div class="luchthaven">
-        <h2 class="icons"><i class="fa-solid fa-plane"></i> Dichtstbijzijnde luchthavens</h2>
         <ul>
-            <li>Luchthaven Groningen Eelde - 59 km</li>
+            <li><h2 class="icons"><i class="fa-solid fa-square-parking parkeer"></i>Parkeerplaats</h2></li>
+            <li><p class="parkeer-tekst">Privé parkeren is gratis. Je kunt parkeren bij de accommodatie. Reserveren is niet noodzakelijk.</p></li>
+        </ul>
+        <ul>
+            <li><h2 class="icons"><i class="fa-solid fa-wifi wifi"></i> Internet</h2></li>
+            <li><p class="wifi-tekst">WiFi is beschikbaar in de gehele accommodatie. Deze service is gratis.</p></li>
+        </ul>
+        <ul>
+            <li><h2 class="icons"><i class="fa-solid fa-kitchen-set"></i> Keuken</h2></li>
+            <li><i class="fa-solid fa-check check"></i> Eettafel</li>
+            <li><i class="fa-solid fa-check check"></i> koffiezetapparaat</li>
+            <li><i class="fa-solid fa-check check"></i> Schoonmaakmiddelen</li>
+            <li><i class="fa-solid fa-check check"></i> Keukengerei</li>
+            <li><i class="fa-solid fa-check check"></i> Elektrische waterkoker</li>
+            <li><i class="fa-solid fa-check check"></i> magnetron</li>
+            <li><i class="fa-solid fa-check check"></i> Koelkast</li>
+            <li><i class="fa-solid fa-check check"></i> Kitchenette</li>
+        </ul>
+        <ul>
+            <li><h2 class="icons"><i class="fa-solid fa-bed"></i> Slaapkamer</h2></li>
+            <li><i class="fa-solid fa-check check"></i> Beddengoed</li>
+            <li><i class="fa-solid fa-check check"></i> (Kleding)kast</li>
         </ul>
         </div>
     </div>
 
+    <!-- Kolom 2: Badkamer -->
     <div class="faciliteiten-col">
-        <h2 class="icons"><i class="fa-solid fa-utensils"></i> Restaurants & cafés</h2>
+        <div class="badkamer">
+        <h2 class="icons"><i class="fa-solid fa-shower"></i> Badkamer</h2>
         <ul>
-            <li>Restaurant De Parel - 650 m</li>
-            <li>Café/bar Reinders - 600 m</li>
-            <li>Restaurant Forellen Visvijvers de Woldstek - 2,4 km</li>
+            <li><i class="fa-solid fa-check check"></i> Toiletpapier</li>
+            <li><i class="fa-solid fa-check check"></i> Handdoeken</li>
+            <li><i class="fa-solid fa-check check"></i> Handdoeken/lakens (toeslag)</li>
+            <li><i class="fa-solid fa-check check"></i> Bad of douche</li>
+            <li><i class="fa-solid fa-check check"></i> Eigen badkamer</li>
+            <li><i class="fa-solid fa-check check"></i> Wc</li>
+            <li><i class="fa-solid fa-check check"></i> Gratis toiletartikelen</li>
+            <li><i class="fa-solid fa-check check"></i> Douche</li>
         </ul>
-    
-        <div class="natuur">
-        <h2 class="icons"><i class="fa-solid fa-mountain"></i> Natuurschoon</h2>
         <ul>
-            <li>Bos - Ruinerwold - 4,5 km</li>
+            <li><h2 class="icons"><i class="fa-solid fa-couch"></i> Badkamer</h2></li>
+            <li><i class="fa-solid fa-check check"></i> Eethoek</li>
+            <li><i class="fa-solid fa-check check"></i> Bank</li>
+            <li><i class="fa-solid fa-check check"></i> Zithoek</li>
         </ul>
-        </div>
-
-        <div class=" ov">
-        <h2 class="icons"><i class="fa-solid fa-train"></i> Openbaar vervoer</h2>
         <ul>
-            <li>Trein - station Meppel - 8 km</li>
-            <li>Trein - station Steenwijk - 16 km</li>
+            <li><h2 class="icons"><i class="fa-solid fa-tv"></i> Media & Technologie</h2></li>
+            <li><i class="fa-solid fa-check check"></i> Flatscreen-Tv</li>
+            <li><i class="fa-solid fa-check check"></i> Tv</li>
+        </ul>
+        <ul>
+            <li><h2 class="icons"><i class="fa-solid fa-bed"></i> Kamerfaciliteiten</h2></li>
+            <li><i class="fa-solid fa-check check"></i> Stopcontact bij het bed</li>
+            <li><i class="fa-solid fa-check check"></i> Kledingrek</li>
+            <li><i class="fa-solid fa-check check"></i> Eigen ingang</li>
+            <li><i class="fa-solid fa-check check"></i> Ventilator</li>
+        </ul>
+        <ul>
+            <li><h2 class="icons"><i class="fa-solid fa-wheelchair"></i> Toegangelijkheid</h2></li>
+            <li><i class="fa-solid fa-check check"></i> Bovenverdieping alleen bereikbaar per trap</li>
+        </ul>
+        <ul>
+            <li><h2 class="icons"> Buiten</h2></li>
+            <li><i class="fa-solid fa-check check"></i> Buitenmeubels</li>
+            <li><i class="fa-solid fa-check check"></i> Terras</li>
+            <li><i class="fa-solid fa-check check"></i> Tuin</li>
         </ul>
         </div>
     </div>
+
+    <!-- Kolom 3: Eten & Drinken, Activiteiten, Buiten & Uitzicht -->
+    <div class="faciliteiten-col">
+        <h2 class="icons"><i class="fa-solid fa-utensils"></i> Eten & Drinken</h2>
+        <ul>
+            <li><i class="fa-solid fa-check check"></i> Mini bar</li>
+            <li><i class="fa-solid fa-check check"></i> Thee- en koffiefaciliteiten</li>
+        </ul>
+
+        <h2 class="icons"><i class="fa-solid fa-person-running"></i> Activiteiten</h2>
+        <ul>
+            <li><i class="fa-solid fa-check check"></i> Fietsen</li>
+            <li><i class="fa-solid fa-check check"></i> Hengelsport</li>
+        </ul>
+
+        <h2 class="icons"><i class="fa-solid fa-tree"></i> Buiten & Uitzicht</h2>
+        <ul>
+            <li><i class="fa-solid fa-check check"></i> Uitzicht</li>
+            <li><i class="fa-solid fa-check check"></i> Uitzicht op de tuin</li>
+            <li><i class="fa-solid fa-check check"></i> Uitzicht op het weiland</li>
+        </ul>
+    </div>
 </div>
-</div>
-    
+
+
+
 
 </body>
 

@@ -6,22 +6,24 @@
 }
 
 .titel {
-   display: flex;
+    display: flex;
     align-items: flex-start;
     gap: 20px;
     max-width: 1000px;
     margin-left: 30px;
-    padding-left: 120px; 
+    padding-left: 120px;
 }
+
 .informatie {
     display: flex;
     align-items: flex-start;
     gap: 20px;
     max-width: 1000px;
     margin-left: 30px;
-    padding-right: 20px; 
+    padding-right: 20px;
     justify-content: center;
 }
+
 .informatie-foto {
     width: 100px;
     height: 100px;
@@ -31,36 +33,37 @@
 }
 
 .informatie-tekst {
-     padding: 20px;    
-    border: 2px solid;  
+    padding: 20px;
+    border: 2px solid;
     border-radius: 8px;
 }
 
-.accomodatie-titel{
+.accomodatie-titel {
     display: flex;
     align-items: flex-start;
     max-width: 1000px;
-    padding-left: 70px; 
+    padding-left: 70px;
     justify-content: center;
 }
 
 .icons {
     display: flex;
-    align-items: center; 
-    gap: 10px; 
+    align-items: center;
+    gap: 10px;
 }
 
 .accommodatie-omgeving-header i {
-    font-size: 2rem; 
-    color: #000; 
+    font-size: 2rem;
+    color: #000;
 }
 
 .accommodatie-omgeving-header h1 {
-    margin: 0; 
+    margin: 0;
 }
+
 .omgeving-container {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     gap: 50px;
     margin: 40px auto;
     max-width: 1000px;
@@ -114,9 +117,11 @@
 .luchthaven {
     margin-top: 50px;
 }
+
 .natuur {
     margin-top: 60px;
-} 
+}
+
 .ov {
     margin-top: 63px;
 }
@@ -126,19 +131,76 @@
     align-items: flex-start;
     max-width: 1000px;
     padding-left: 70px;
-    margin-left: 120px; 
+    margin-left: 120px;
     justify-content: center;
 }
+
 .faciliteiten-container {
     display: flex;
-    justify-content: center; 
-    gap: 50px;
-    margin: 40px auto;
-    max-width: 1000px;
     flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
-.omgeving-col {
-    flex: 1;
-    min-width: 300px;
-    max-width: 400px;
+
+.faciliteiten-col li i.check {
+    margin-right:8px;
+    color: green;
+}
+
+
+.faciliteiten-col ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.faciliteiten-col li {
+    margin-bottom: 8px;
+}
+
+.faciliteiten-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.faciliteiten-col {
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 250px;
+}
+
+.faciliteiten-col ul {
+    list-style: none;
+}
+
+.faciliteiten-col li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.faciliteiten-col li i.check {
+    margin-right: 12px;
+    color: green;
+}
+
+.ideaal {
+    margin-left: 100px;
+}
+.badkamer{
+    margin-left: 60px;
+}
+
+.parkeer-tekst {
+    max-width: 300px;
+}
+
+.wifi-tekst {
+    max-width: 300px;
+}
+.faciliteiten-col h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
 }
