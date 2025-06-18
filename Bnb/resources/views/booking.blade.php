@@ -120,7 +120,7 @@
         
 <form action="{{ route('boeking.store') }}" method="POST">
     @csrf
-    <!-- je inputvelden hier -->
+
     <button type="submit">Boeken</button>
 </form>
 
