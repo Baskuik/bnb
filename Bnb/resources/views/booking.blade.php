@@ -81,9 +81,14 @@
 </head>
 <body>
 
+@include('layout')
+
 <div class="form-container">
     <h1>Boeking</h1>
-    <form action="submit_booking.php" method="POST">
+
+    <!-- Laravel formulier -->
+    <form action="{{ route('boeking.store') }}" method="POST">
+        @csrf
 
         <div class="date-group">
             <div>
@@ -117,19 +122,8 @@
         <div>
             <textarea name="vragen" placeholder="Vragen of opmerkingen..."></textarea>
         </div>
-        
-<form action="{{ route('boeking.store') }}" method="POST">
-    @csrf
 
-    <button type="submit">Boeken</button>
-</form>
-
-
-
-        
-
-
-       
+        <button type="submit">Boeken</button>
     </form>
 </div>
 

@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoekingController;
 
-Route::post('/boekingen', [BoekingController::class, 'store'])->name('boeking.store');
+Route::post('/boeking', [BoekingController::class, 'store'])->name('boeking.store');
+
 
 
 // Algemene pagina-routes
