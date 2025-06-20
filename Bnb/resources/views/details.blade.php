@@ -233,13 +233,21 @@
 </div>
 <div class="huisregels"> 
   <h2><i class="fa-solid fa-arrow-right-to-bracket"></i> Inchecken</h2>
-  <ul>
-    <li>
-      <p>Van 15:00 tot 18:00 <br>
-      De accommodatie van tevoren weten hoe laat je arriveert.</p>
-    </li>
-  </ul>
-</div>
+  <p class="incheck-tijd">
+    Van 15:00 tot 18:00<br>
+    Laat de accommodatie van tevoren  weten hoe laat je arriveert.
+  </p>
+  <h2><i class="fa-solid fa-arrow-right-from-bracket"></i> Uitchecken</h2>
+  <p class="uitcheck-tijd">
+    Van 08:00 tot 11:00
+  </p>
+  <h2><i class="fa-solid fa-person"></i> Kinderen</h2>
+  <p class="kinderen">
+    Kinderen worden toegelaten.
+  </p>
+</div>  
+
+
 
 
 

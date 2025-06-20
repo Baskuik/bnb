@@ -212,12 +212,29 @@
     padding-right: 200px;
 }
 
-.huisregels h2{
+.huisregels h2 {
     font-size: 20px;
     text-align: center;
     padding-right: 900px;
     padding-top: 50px;
 }
+
 .huisregels ul {
-    list-style-type: none; /* zorgt ervoor dat puntje voor de tekst weg gaat*/
+    list-style-type: none;
+    /* zorgt ervoor dat puntje voor de tekst weg gaat*/
+}
+
+.incheck-tijd {
+    padding-left: 230px;
+    font-size: 14px;
+}
+
+.uitcheck-tijd {
+    padding-left: 230px;
+    font-size: 14px;
+}
+
+.kinderen {
+    padding-left: 230px;
+    font-size: 14px;
 }
