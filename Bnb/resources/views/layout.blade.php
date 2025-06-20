@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
     <style>
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
             font-family: 'Poppins', sans-serif;
@@ -52,7 +54,7 @@
             align-items: bottom;
         }
 
-      
+
 
         footer {
             background-color: #f8f9fa;
@@ -74,6 +76,7 @@
         }
     </style>
 </head>
+
 <body>
 
     {{-- Navbar --}}
@@ -88,30 +91,36 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-    <li class="nav-item"><a class="nav-link" href="/booking">Boeking</a></li>
-    <li class="nav-item"><a class="nav-link" href="/reviews">Reviews</a></li>
-    <li class="nav-item"><a class="nav-link" href="/details">Details</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/booking">Boeking</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/reviews">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/details">Details</a></li>
 
-    @auth
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-user-circle fa-lg me-1"></i> {{ Auth::user()->name }}
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="{{ route('profile') }}">Mijn gegevens</a></li>
-            <li>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button class="dropdown-item" type="submit">Uitloggen</button>
-                </form>
-            </li>
-        </ul>
-    </li>
-    @else
-    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-    @endauth
-</ul>
+
+                    @auth
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user-circle fa-lg me-1"></i> {{ Auth::user()->name }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="{{ route('profile') }}">Mijn gegevens</a></li>
+                                <li>
+                                    @if (Auth::user()->is_admin)
+                                <li><a class="dropdown-item" href="/admin">Adminpanel</a></li>
+                                @endif
+
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button class="dropdown-item" type="submit">Uitloggen</button>
+                                </form>
+                        </li>
+                    </ul>
+                    </li>
+                @else
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                @endauth
+                </ul>
 
             </div>
         </div>
@@ -129,7 +138,7 @@
         <div class="container">
             <p class="mb-1">© {{ date('Y') }} Bnb. Alle rechten voorbehouden.</p>
             <small>
-                <a href="/privacy">Privacybeleid</a> · 
+                <a href="/privacy">Privacybeleid</a> ·
                 <a href="/voorwaarden">Voorwaarden</a>
             </small>
         </div>
@@ -138,5 +147,5 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
 
+</html>
