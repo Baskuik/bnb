@@ -77,6 +77,11 @@
         button:hover {
             background-color: #084d8a;
         }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -116,7 +121,16 @@
             <input type="text" name="voornaam" placeholder="Voornaam" required>
             <input type="text" name="achternaam" placeholder="Achternaam" required><br><br>
             <input type="email" name="email" placeholder="E-mailadres" required>
-            <input type="tel" name="telefoon" placeholder="Telefoonnummer" required>
+
+            <!-- ✅ Telefoon met pattern voor validatie -->
+            <input
+                type="tel"
+                name="telefoon"
+                id="telefoon"
+                placeholder="Telefoonnummer"
+                required
+                pattern="\d{8,}"
+                title="Voer minimaal 8 cijfers in, alleen cijfers zijn toegestaan.">
         </div>
 
         <div>
@@ -202,7 +216,22 @@
         vol.addEventListener("change", updatePersonOptions);
         kind.addEventListener("change", updatePersonOptions);
     });
+
+    // ✅ Extra JS-validatie op telefoonnummer bij verzenden
+    document.querySelector("form").addEventListener("submit", function (e) {
+        const telefoonInput = document.getElementById("telefoon");
+        const telefoon = telefoonInput.value.trim();
+
+        const isGeldig = /^\d{8,}$/.test(telefoon);
+
+        if (!isGeldig) {
+            e.preventDefault();
+            alert("Voer een geldig telefoonnummer in van minimaal 8 cijfers (alleen cijfers toegestaan).");
+            telefoonInput.focus();
+        }
+    });
 </script>
 
 </body>
 </html>
+
