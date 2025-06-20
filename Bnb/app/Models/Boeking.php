@@ -12,6 +12,7 @@ class Boeking extends Model
         'checkout',
         'volwassenen',
         'kinderen',
+        'bedrag',
         'voornaam',
         'achternaam',
         'email',

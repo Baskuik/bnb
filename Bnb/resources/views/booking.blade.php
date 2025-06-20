@@ -162,7 +162,7 @@
 
 <script>
     $(function () {
-    let geboekteDatums = []; // zorg dat dit ook staat, anders werkt kalender niet
+    let geboekteDatums = [];
 
     function formatDate(d) {
         let day = ("0" + d.getDate()).slice(-2);
@@ -199,35 +199,21 @@
         });
     }
 
-    function updatePersonOptions() {
-        const volSelect = document.getElementById("volwassenen");
-        const kindSelect = document.getElementById("kinderen");
+    // Haal geboekte datums op van backend via AJAX
+    $.ajax({
+        url: "/api/geboekte-datums",
+        method: "GET",
+        dataType: "json",
+        success: function(data) {
+            geboekteDatums = data;
+            initDatepickers();
+        },
+        error: function() {
+            alert("Kon geboekte datums niet ophalen.");
+            initDatepickers();  // fallback, alle datums beschikbaar
+        }
+    });
 
-        const huidigeVol = parseInt(volSelect.value) || 1;
-        const huidigeKind = parseInt(kindSelect.value) || 0;
-
-        kindSelect.innerHTML = "";
-        for (let i = 0; i <= 4 - huidigeVol; i++) {
-            const opt = document.createElement("option");
-            opt.value = i;
-            opt.text = i + (i === 1 ? " kind" : " kinderen");
-            kindSelect.appendChild(opt);
-        }
-        if (huidigeKind <= 4 - huidigeVol) {
-            kindSelect.value = huidigeKind;
-        }
-
-        volSelect.innerHTML = "";
-        for (let i = 1; i <= 4 - huidigeKind; i++) {
-            const opt = document.createElement("option");
-            opt.value = i;
-            opt.text = i + (i === 1 ? " volwassene" : " volwassenen");
-            volSelect.appendChild(opt);
-        }
-        if (huidigeVol <= 4 - huidigeKind) {
-            volSelect.value = huidigeVol;
-        }
-    }
 
     const vol = document.getElementById("volwassenen");
     const kind = document.getElementById("kinderen");

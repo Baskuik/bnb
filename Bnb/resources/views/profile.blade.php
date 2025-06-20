@@ -17,8 +17,11 @@
         <thead>
             <tr>
                 <th>Boeking ID</th>
-                <th>Datum</th>
-                <th>Status</th>
+                <th>Incheck datum</th>
+                <th>Uitcheck datum</th>
+                <th>Aantal volwassenen</th>
+                <th>Aantal kinderen</th>
+                <th>Totaal bedrag</th>
                 <!-- Voeg meer kolommen toe indien gewenst -->
             </tr>
         </thead>
@@ -26,8 +29,13 @@
             @foreach($boekingen as $boeking)
                 <tr>
                     <td>{{ $boeking->id }}</td>
-                    <td>{{ $boeking->datum ?? 'N.v.t.' }}</td>
-                    <td>{{ $boeking->status ?? 'Onbekend' }}</td>
+                    <td>{{ $boeking->checkin}}</td>
+                    <td>{{ $boeking->checkout}}</td>
+                    <td>{{ $boeking->volwassenen}}</td>
+                    <td>{{ $boeking->kinderen}}</td>
+                    <td>€{{ number_format($boeking->bedrag, 2, ',', '.') }}</td>
+
+
                 </tr>
             @endforeach
         </tbody>
