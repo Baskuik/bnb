@@ -102,7 +102,7 @@ class BoekingController extends Controller
             }
         }
 
-        return response()->json(array_unique($geboekteDatums));
+        return response()->json(array_values(array_unique($geboekteDatums)));
     }
 
     public function betaal()

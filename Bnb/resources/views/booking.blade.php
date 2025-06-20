@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- jQuery UI voor datepicker -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    @include('layout')
-
+    @extends('layout')
+@section('content')
     <style>
         body {
             background-image: url('/images/achtergrond.jpg');
@@ -201,6 +201,12 @@
 
     // Haal geboekte datums op van backend via AJAX
     $.ajax({
+        success: function(data) {
+    geboekteDatums = data;
+    console.log('Geboekte datums:', geboekteDatums);
+    initDatepickers();
+},
+
         url: "/api/geboekte-datums",
         method: "GET",
         dataType: "json",
@@ -254,12 +260,16 @@
         }
     });
 
-    geboekteDatums = []; 
-    initDatepickers();
+    function updatePersonOptions() {
+    // Deze functie kun je later uitbreiden indien nodig.
+    // Voor nu doet hij niets, maar voorkomt fouten.
+}
+
 });
 
 </script>
 
 
 </body>
+@endsection
 </html>
