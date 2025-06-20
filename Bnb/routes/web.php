@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoekingController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 
 
 Route::post('/boeking', [BoekingController::class, 'store'])->middleware('auth')->name('boeking.store');
@@ -53,3 +54,9 @@ Route::get('/profile', function () {
 })->middleware('auth')->name('profile');
 
 Route::get('/api/geboekte-datums', [BoekingController::class, 'geboekteDatums']);
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', function () {
+        return view('adminpanel');
+    })->name('admin.dashboard');
+});
