@@ -227,8 +227,18 @@
             <li><i class="fa-solid fa-check check"></i> Nederlands</li>
         </ul>
 </div>
+</div>
 <div class="huisregels-titel">
     <h2>Huisregels</h2>
+</div>
+<div class="huisregels"> 
+  <h2><i class="fa-solid fa-arrow-right-to-bracket"></i> Inchecken</h2>
+  <ul>
+    <li>
+      <p>Van 15:00 tot 18:00 <br>
+      De accommodatie van tevoren weten hoe laat je arriveert.</p>
+    </li>
+  </ul>
 </div>
 
 

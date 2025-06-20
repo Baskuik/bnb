@@ -208,5 +208,16 @@
 }
 
 .huisregels-titel {
-    padding-right: 1130px;
+    text-align: center;
+    padding-right: 200px;
+}
+
+.huisregels h2{
+    font-size: 20px;
+    text-align: center;
+    padding-right: 900px;
+    padding-top: 50px;
+}
+.huisregels ul {
+    list-style-type: none; /* zorgt ervoor dat puntje voor de tekst weg gaat*/
 }
