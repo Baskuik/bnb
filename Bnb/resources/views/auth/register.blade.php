@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Registreren</title>
-    <link rel="stylesheet" href="{{ asset('css/loginstyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/registerstyle.css') }}">
 </head>
 <body>
-    <div class="login-container">
+    <div class="register-container">
         <h2>Registreren</h2>
         @if ($errors->any())
             <div class="error">{{ $errors->first() }}</div>

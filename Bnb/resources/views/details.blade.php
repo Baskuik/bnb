@@ -8,9 +8,9 @@
     <title>Details</title>
     <link rel="stylesheet" href="{{ asset('css/detailsstyle.css') }}" />
 </head>
-
+@extends('layout')
 <body>
-    @include('layout')
+    @section('content')
 
     <div class="titel">
         <h1 style="color: blue">Informatie van host</h1>
@@ -246,12 +246,7 @@
     Kinderen worden toegelaten.
   </p>
 </div>  
-
-
-
-
-
-
+@endsection
 </body>
 
 </html>

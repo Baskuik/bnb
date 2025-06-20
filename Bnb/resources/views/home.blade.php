@@ -7,10 +7,9 @@
     <title>Home</title>
     <link rel="stylesheet" href="{{ asset('css/homestyle.css') }}" />
 </head>
-
+@extends('layout')
 <body>
-    @include('layout')
-
+@section('content')
     <div class="hometext">
         <h1>Apartement Ruinerwold</h1> <br>
         <p>115 Dokter Larijweg, 7961 NR Ruinerwold, Nederland</p>
@@ -116,7 +115,7 @@
             });
         });
     </script>
-
+@endsection
 </body>
 
 </html>
