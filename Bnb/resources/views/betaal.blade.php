@@ -42,7 +42,20 @@
     <p>Je hebt een verblijf van <strong>{{ $dagen }}</strong> {{ $dagen == 1 ? 'dag' : 'dagen' }} geboekt.</p>
     <div class="prijs">Totaal te betalen: <strong>€{{ number_format($prijs, 2, ',', '.') }}</strong></div>
 
-    {{-- Hier zou je bijv. een Mollie of Stripe betaallink kunnen zetten --}}
-    <a class="knop" href="#">Ga door met betalen</a>
+    <form action="{{ route('boeking.bevestiging') }}" method="POST">
+        @csrf
+        <input type="hidden" name="voornaam" value="{{ $voornaam }}">
+        <input type="hidden" name="achternaam" value="{{ $achternaam }}">
+        <input type="hidden" name="email" value="{{ $email }}">
+        <input type="hidden" name="checkin" value="{{ $checkin }}">
+        <input type="hidden" name="checkout" value="{{ $checkout }}">
+        <input type="hidden" name="dagen" value="{{ $dagen }}">
+        <input type="hidden" name="volwassenen" value="{{ $volwassenen }}">
+        <input type="hidden" name="kinderen" value="{{ $kinderen }}">
+        <input type="hidden" name="prijs" value="{{ $prijs }}">
+
+        <button type="submit" class="knop">Ga door naar bevestiging</button>
+    </form>
 </body>
 </html>
+

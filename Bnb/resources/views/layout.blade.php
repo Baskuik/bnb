@@ -47,18 +47,12 @@
         }
 
         main {
-            flex: 1;
+            flex: 0;
             padding: 30px 15px;
+            align-items: bottom;
         }
 
-        .page-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 30px;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-        }
+      
 
         footer {
             background-color: #f8f9fa;

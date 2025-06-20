@@ -82,6 +82,11 @@
             color: red;
             margin-top: 10px;
         }
+
+        .error ul {
+            list-style: none;
+            padding: 0;
+        }
     </style>
 </head>
 <body>
@@ -90,6 +95,17 @@
 
 <div class="form-container">
     <h1>Boeking</h1>
+
+    <!-- ✅ Foutmeldingen tonen -->
+    @if ($errors->any())
+        <div class="error">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <!-- Laravel formulier -->
     <form action="{{ route('boeking.store') }}" method="POST">
@@ -142,13 +158,28 @@
 </div>
 
 <script>
-    $(function () {
+    let geboekteDatums = [];
+
+    function formatDate(d) {
+        let day = ("0" + d.getDate()).slice(-2);
+        let month = ("0" + (d.getMonth() + 1)).slice(-2);
+        let year = d.getFullYear();
+        return `${day}-${month}-${year}`;
+    }
+
+    function isDatumBeschikbaar(date) {
+        const formatted = formatDate(date);
+        return [!geboekteDatums.includes(formatted)];
+    }
+
+    function initDatepickers() {
         const checkin = $("#checkin");
         const checkout = $("#checkout");
 
-        checkin.datepicker({
+        checkin.datepicker("destroy").datepicker({
             dateFormat: "dd-mm-yy",
             minDate: 0,
+            beforeShowDay: isDatumBeschikbaar,
             onSelect: function (selectedDate) {
                 const parts = selectedDate.split("-");
                 const date = new Date(parts[2], parts[1] - 1, parts[0]);
@@ -157,43 +188,51 @@
             }
         });
 
-        checkout.datepicker({
+        checkout.datepicker("destroy").datepicker({
             dateFormat: "dd-mm-yy",
-            minDate: 1
+            minDate: 1,
+            beforeShowDay: isDatumBeschikbaar
         });
-    });
-
-    function updatePersonOptions() {
-        const volSelect = document.getElementById("volwassenen");
-        const kindSelect = document.getElementById("kinderen");
-
-        const huidigeVol = parseInt(volSelect.value) || 1;
-        const huidigeKind = parseInt(kindSelect.value) || 0;
-
-        kindSelect.innerHTML = "";
-        for (let i = 0; i <= 4 - huidigeVol; i++) {
-            const opt = document.createElement("option");
-            opt.value = i;
-            opt.text = i + (i === 1 ? " kind" : " kinderen");
-            kindSelect.appendChild(opt);
-        }
-        if (huidigeKind <= 4 - huidigeVol) {
-            kindSelect.value = huidigeKind;
-        }
-
-        volSelect.innerHTML = "";
-        for (let i = 1; i <= 4 - huidigeKind; i++) {
-            const opt = document.createElement("option");
-            opt.value = i;
-            opt.text = i + (i === 1 ? " volwassene" : " volwassenen");
-            volSelect.appendChild(opt);
-        }
-        if (huidigeVol <= 4 - huidigeKind) {
-            volSelect.value = huidigeVol;
-        }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    $(function () {
+        // ✅ Ophalen van bezette datums
+        $.getJSON("/geboekte-datums", function (data) {
+            geboekteDatums = data;
+            initDatepickers();
+        });
+
+        // Persoonselectie functionaliteit
+        function updatePersonOptions() {
+            const volSelect = document.getElementById("volwassenen");
+            const kindSelect = document.getElementById("kinderen");
+
+            const huidigeVol = parseInt(volSelect.value) || 1;
+            const huidigeKind = parseInt(kindSelect.value) || 0;
+
+            kindSelect.innerHTML = "";
+            for (let i = 0; i <= 4 - huidigeVol; i++) {
+                const opt = document.createElement("option");
+                opt.value = i;
+                opt.text = i + (i === 1 ? " kind" : " kinderen");
+                kindSelect.appendChild(opt);
+            }
+            if (huidigeKind <= 4 - huidigeVol) {
+                kindSelect.value = huidigeKind;
+            }
+
+            volSelect.innerHTML = "";
+            for (let i = 1; i <= 4 - huidigeKind; i++) {
+                const opt = document.createElement("option");
+                opt.value = i;
+                opt.text = i + (i === 1 ? " volwassene" : " volwassenen");
+                volSelect.appendChild(opt);
+            }
+            if (huidigeVol <= 4 - huidigeKind) {
+                volSelect.value = huidigeVol;
+            }
+        }
+
         const vol = document.getElementById("volwassenen");
         const kind = document.getElementById("kinderen");
 
@@ -215,23 +254,22 @@
 
         vol.addEventListener("change", updatePersonOptions);
         kind.addEventListener("change", updatePersonOptions);
-    });
 
-    // ✅ Extra JS-validatie op telefoonnummer bij verzenden
-    document.querySelector("form").addEventListener("submit", function (e) {
-        const telefoonInput = document.getElementById("telefoon");
-        const telefoon = telefoonInput.value.trim();
+        // ✅ Extra validatie op telefoonnummer
+        document.querySelector("form").addEventListener("submit", function (e) {
+            const telefoonInput = document.getElementById("telefoon");
+            const telefoon = telefoonInput.value.trim();
+            const isGeldig = /^\d{8,}$/.test(telefoon);
 
-        const isGeldig = /^\d{8,}$/.test(telefoon);
-
-        if (!isGeldig) {
-            e.preventDefault();
-            alert("Voer een geldig telefoonnummer in van minimaal 8 cijfers (alleen cijfers toegestaan).");
-            telefoonInput.focus();
-        }
+            if (!isGeldig) {
+                e.preventDefault();
+                alert("Voer een geldig telefoonnummer in van minimaal 8 cijfers (alleen cijfers toegestaan).");
+                telefoonInput.focus();
+            }
+        });
     });
 </script>
 
+
 </body>
 </html>
-
