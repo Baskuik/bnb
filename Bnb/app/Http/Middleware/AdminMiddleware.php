@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Middleware;
 
 use Closure;
@@ -12,6 +13,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        abort(403, 'Toegang geweigerd. Alleen voor admins.');
+        abort(403, 'Alleen toegankelijk voor admins.');
     }
 }

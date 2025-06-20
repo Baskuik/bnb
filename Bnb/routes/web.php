@@ -5,6 +5,7 @@ use App\Http\Controllers\BoekingController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Middleware\AdminMiddleware;
 
 
 Route::post('/boeking', [BoekingController::class, 'store'])->middleware('auth')->name('boeking.store');
@@ -55,8 +56,9 @@ Route::get('/profile', function () {
 
 Route::get('/api/geboekte-datums', [BoekingController::class, 'geboekteDatums']);
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/admin', function () {
         return view('adminpanel');
-    })->name('admin.dashboard');
+    });
 });
+

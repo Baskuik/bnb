@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="{{ asset('css/homestyle.css') }}" />
 </head>
 @extends('layout')
-<body>
 @section('content')
+<body>
     <div class="hometext">
         <h1>Apartement Ruinerwold</h1> <br>
         <p>115 Dokter Larijweg, 7961 NR Ruinerwold, Nederland</p>
@@ -115,7 +115,6 @@
             });
         });
     </script>
-@endsection
 </body>
-
+@endsection
 </html>
