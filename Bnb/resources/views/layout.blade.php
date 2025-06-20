@@ -1,55 +1,128 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
-   <script src="https://kit.fontawesome.com/fa79014ad0.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Bnb')</title>
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/fa79014ad0.js" crossorigin="anonymous"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(to bottom right, #f2f7ff, #ffffff);
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-brand img {
+            height: 60px;
+        }
+
+        .nav-link {
+            color: #0d6efd !important;
+            font-size: 18px;
+            font-weight: 500;
+            margin-right: 15px;
+        }
+
+        .nav-link:hover {
+            color: #084298 !important;
+        }
+
+        main {
+            flex: 1;
+            padding: 30px 15px;
+        }
+
+        .page-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            font-size: 14px;
+            color: #6c757d;
+            text-align: center;
+        }
+
+        footer a {
+            color: #6c757d;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        footer a:hover {
+            color: #0d6efd;
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<style>
-    .navbar {
-        font-family: 'Calibri';
-        outline: auto;
-    }
-</style>
 <body>
 
     {{-- Navbar --}}
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
-                <img src="images/Bnb.png" alt="Logo" style="height 100px" width="100px"> 
+                <img src="/images/Bnb.png" alt="Bnb Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a style="color: blue; font-size: 20px !important;" class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a style="color: blue; font-size: 20px !important;" class="nav-link" href="/booking">Booking</a>
-                    </li>
-                    <li class="nav-item">
-                        <a style="color: blue; font-size: 20px !important;" class="nav-link" href="/reviews">Reviews</a>
-                    </li>
-                    <li class="nav-item">
-                        <a style="color: blue; font-size: 20px !important;" class="nav-link" href="/details">Details</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/">🏠 Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/booking">📅 Boeking</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/reviews">⭐ Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/details">ℹ️ Details</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    {{-- Content van elke pagina --}}
-    <div class="container mt-4">
-        @yield('content')
-    </div>
+    {{-- Pagina-inhoud --}}
+    <main>
+        <div class="page-container">
+            @yield('content')
+        </div>
+    </main>
 
+    {{-- Footer --}}
+    <footer>
+        <div class="container">
+            <p class="mb-1">© {{ date('Y') }} Bnb. Alle rechten voorbehouden.</p>
+            <small>
+                <a href="/privacy">Privacybeleid</a> · 
+                <a href="/voorwaarden">Voorwaarden</a>
+            </small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
+
