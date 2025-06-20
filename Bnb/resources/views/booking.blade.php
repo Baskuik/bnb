@@ -142,13 +142,14 @@
 
             <!-- ✅ Telefoon met pattern voor validatie -->
             <input
-                type="tel"
-                name="telefoon"
-                id="telefoon"
-                placeholder="Telefoonnummer"
-                required
-                pattern="\d{8,}"
-                title="Voer minimaal 8 cijfers in, alleen cijfers zijn toegestaan.">
+    type="tel"
+    name="telefoon"
+    id="telefoon"
+    placeholder="Bijv. 0612345678"
+    required
+    pattern="^06\d{8}$"
+    title="Het nummer moet beginnen met 06 en precies 10 cijfers bevatten.">
+
         </div>
 
         <div>
@@ -198,7 +199,7 @@ $(function () {
         });
     }
 
-    // Haal geboekte datums op van backend via AJAX
+    // Haal geboekte datums op via AJAX
     $.ajax({
         url: "/api/geboekte-datums",
         method: "GET",
@@ -218,21 +219,21 @@ $(function () {
     const vol = document.getElementById("volwassenen");
     const kind = document.getElementById("kinderen");
 
-    // Vul volwassenen dropdown (1 t/m 4)
     for (let i = 1; i <= 4; i++) {
         const opt = document.createElement("option");
         opt.value = i;
         opt.textContent = i + (i === 1 ? " volwassene" : " volwassenen");
         vol.appendChild(opt);
     }
-    vol.value = 2; // standaard selectie
+    vol.value = 2; // standaard
 
     function updatePersonOptions() {
         const volwassenenAantal = parseInt(vol.value);
         const maxKinderen = 4 - volwassenenAantal;
 
-        kind.innerHTML = '';  // leegmaken
+        const huidigeKinderWaarde = parseInt(kind.value) || 0;
 
+        kind.innerHTML = '';
         for (let i = 0; i <= maxKinderen; i++) {
             const opt = document.createElement('option');
             opt.value = i;
@@ -240,30 +241,32 @@ $(function () {
             kind.appendChild(opt);
         }
 
-        // Zorg dat de waarde niet boven het maximum blijft
-        if (parseInt(kind.value) > maxKinderen) {
+        if (huidigeKinderWaarde <= maxKinderen) {
+            kind.value = huidigeKinderWaarde;
+        } else {
             kind.value = maxKinderen;
         }
     }
 
     vol.addEventListener("change", updatePersonOptions);
     kind.addEventListener("change", updatePersonOptions);
-    updatePersonOptions(); // initialiseren
+    updatePersonOptions();
 
-    // Telefoon validatie
+    // ✅ Telefoonvalidatie: moet beginnen met 06 en precies 10 cijfers bevatten
     document.querySelector("form").addEventListener("submit", function (e) {
         const telefoonInput = document.getElementById("telefoon");
         const telefoon = telefoonInput.value.trim();
-        const isGeldig = /^\d{8,}$/.test(telefoon);
+        const isGeldig = /^06\d{8}$/.test(telefoon); // 06 gevolgd door 8 cijfers
 
         if (!isGeldig) {
             e.preventDefault();
-            alert("Voer een geldig telefoonnummer in van minimaal 8 cijfers (alleen cijfers toegestaan).");
+            alert("Voer een geldig Nederlands mobiel nummer in dat begint met 06 en precies 10 cijfers bevat.");
             telefoonInput.focus();
         }
     });
 });
 </script>
+
 
 
 
