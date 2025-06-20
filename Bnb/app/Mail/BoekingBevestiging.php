@@ -10,7 +10,7 @@ class BoekingBevestiging extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data; // Hierin zitten alle gegevens
+    public $data;
 
     public function __construct($data)
     {
@@ -20,9 +20,6 @@ class BoekingBevestiging extends Mailable
     public function build()
     {
         return $this->subject('Bevestiging van je boeking')
-        ->view('boeking_bevestiging');
-                
+                    ->view('boeking_bevestiging'); // zelfde view als de bevestigingspagina
     }
 }
-
-

@@ -7,12 +7,12 @@ use App\Models\Boeking;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BoekingBevestiging;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class BoekingController extends Controller
 {
     public function store(Request $request)
     {
-        // ✅ Validatie
         $validated = $request->validate([
             'checkin' => 'required|date_format:d-m-Y',
             'checkout' => 'required|date_format:d-m-Y|after:checkin',
@@ -25,13 +25,22 @@ class BoekingController extends Controller
             'vragen' => 'nullable|string|max:1000',
         ]);
 
-        // ✅ Bereken aantal dagen en prijs
         $checkinDate = Carbon::createFromFormat('d-m-Y', $validated['checkin']);
         $checkoutDate = Carbon::createFromFormat('d-m-Y', $validated['checkout']);
+
+        // Controle of data al geboekt is
+        $bestaat = Boeking::where(function ($query) use ($checkinDate, $checkoutDate) {
+            $query->whereBetween('checkin', [$checkinDate, $checkoutDate->copy()->subDay()])
+                ->orWhereBetween('checkout', [$checkinDate->copy()->addDay(), $checkoutDate]);
+        })->exists();
+
+        if ($bestaat) {
+            return back()->withErrors(['checkin' => 'De geselecteerde periode is al geboekt. Kies een andere datum.'])->withInput();
+        }
+
         $dagen = $checkinDate->diffInDays($checkoutDate);
         $prijs = $dagen * 110;
 
-        // ✅ Opslaan in database
         $boeking = Boeking::create([
             'checkin' => $checkinDate->format('Y-m-d'),
             'checkout' => $checkoutDate->format('Y-m-d'),
@@ -44,7 +53,6 @@ class BoekingController extends Controller
             'vragen' => $validated['vragen'],
         ]);
 
-        // ✅ Verstuur bevestiging per e-mail
         Mail::to($validated['email'])->send(new BoekingBevestiging([
             'voornaam' => $validated['voornaam'],
             'achternaam' => $validated['achternaam'],
@@ -57,7 +65,17 @@ class BoekingController extends Controller
             'prijs' => $prijs
         ]));
 
-        // ✅ Doorverwijzen naar de bedankpagina met info voor betaling
+        Session::put('laatste_boeking', [
+            'voornaam' => $validated['voornaam'],
+            'achternaam' => $validated['achternaam'],
+            'checkin' => $validated['checkin'],
+            'checkout' => $validated['checkout'],
+            'dagen' => $dagen,
+            'volwassenen' => $validated['volwassenen'],
+            'kinderen' => $validated['kinderen'],
+            'prijs' => $prijs
+        ]);
+
         return view('bedankt', [
             'voornaam' => $validated['voornaam'],
             'achternaam' => $validated['achternaam'],
@@ -66,9 +84,61 @@ class BoekingController extends Controller
         ]);
     }
 
+    public function geboekteDatums()
+    {
+        $boekingen = Boeking::all();
+        $geboekteDatums = [];
+
+        foreach ($boekingen as $boeking) {
+            $start = Carbon::parse($boeking->checkin);
+            $end = Carbon::parse($boeking->checkout)->subDay();
+
+            for ($date = $start->copy(); $date->lte($end); $date->addDay()) {
+                $geboekteDatums[] = $date->format('d-m-Y');
+            }
+        }
+
+        return response()->json(array_unique($geboekteDatums));
+    }
+
     public function betaal()
     {
-        // Wordt geladen via route en view 'betaal.blade.php'
-        return view('betaal');
+        $data = session('laatste_boeking');
+
+        if (!$data) {
+            return redirect('/')->with('error', 'Geen boekingsgegevens gevonden.');
+        }
+
+        return view('betaal', [
+            'dagen' => $data['dagen'],
+            'prijs' => $data['prijs']
+        ]);
+    }
+
+    public function bevestiging()
+    {
+        $data = session('laatste_boeking');
+
+        if (!$data) {
+            return redirect('/')->with('error', 'Geen boekingsgegevens gevonden.');
+        }
+
+        return view('boeking_bevestiging', ['data' => $data]);
+    }
+
+    public function bedankt()
+    {
+        $data = session('laatste_boeking');
+
+        if (!$data) {
+            return redirect('/')->with('error', 'Geen boekingsgegevens gevonden.');
+        }
+
+        return view('bedankt', [
+            'voornaam' => $data['voornaam'],
+            'achternaam' => $data['achternaam'],
+            'dagen' => $data['dagen'],
+            'prijs' => $data['prijs']
+        ]);
     }
 }
