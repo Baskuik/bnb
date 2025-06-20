@@ -159,9 +159,8 @@
     </form>
 </div>
 
-
 <script>
-    $(function () {
+$(function () {
     let geboekteDatums = [];
 
     function formatDate(d) {
@@ -201,53 +200,57 @@
 
     // Haal geboekte datums op van backend via AJAX
     $.ajax({
-        success: function(data) {
-    geboekteDatums = data;
-    console.log('Geboekte datums:', geboekteDatums);
-    initDatepickers();
-},
-
         url: "/api/geboekte-datums",
         method: "GET",
         dataType: "json",
         success: function(data) {
             geboekteDatums = data;
+            console.log('Geboekte datums:', geboekteDatums);
             initDatepickers();
         },
         error: function() {
             alert("Kon geboekte datums niet ophalen.");
-            initDatepickers();  // fallback, alle datums beschikbaar
+            initDatepickers();  // fallback
         }
     });
 
-
+    // Personen dropdowns
     const vol = document.getElementById("volwassenen");
     const kind = document.getElementById("kinderen");
 
-    // vul dropdowns standaard
+    // Vul volwassenen dropdown (1 t/m 4)
     for (let i = 1; i <= 4; i++) {
         const opt = document.createElement("option");
         opt.value = i;
         opt.textContent = i + (i === 1 ? " volwassene" : " volwassenen");
         vol.appendChild(opt);
     }
-    vol.value = 2;
+    vol.value = 2; // standaard selectie
 
-    for (let i = 0; i <= 2; i++) {
-        const opt = document.createElement("option");
-        opt.value = i;
-        opt.textContent = i + (i === 1 ? " kind" : " kinderen");
-        kind.appendChild(opt);
+    function updatePersonOptions() {
+        const volwassenenAantal = parseInt(vol.value);
+        const maxKinderen = 4 - volwassenenAantal;
+
+        kind.innerHTML = '';  // leegmaken
+
+        for (let i = 0; i <= maxKinderen; i++) {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = i + (i === 1 ? ' kind' : ' kinderen');
+            kind.appendChild(opt);
+        }
+
+        // Zorg dat de waarde niet boven het maximum blijft
+        if (parseInt(kind.value) > maxKinderen) {
+            kind.value = maxKinderen;
+        }
     }
-    kind.value = 0;
 
     vol.addEventListener("change", updatePersonOptions);
     kind.addEventListener("change", updatePersonOptions);
+    updatePersonOptions(); // initialiseren
 
-    // bel updatePersonOptions zodat alles klopt bij start
-    updatePersonOptions();
-
-    // Telefoon validatie (optioneel)
+    // Telefoon validatie
     document.querySelector("form").addEventListener("submit", function (e) {
         const telefoonInput = document.getElementById("telefoon");
         const telefoon = telefoonInput.value.trim();
@@ -259,15 +262,9 @@
             telefoonInput.focus();
         }
     });
-
-    function updatePersonOptions() {
-    // Deze functie kun je later uitbreiden indien nodig.
-    // Voor nu doet hij niets, maar voorkomt fouten.
-}
-
 });
-
 </script>
+
 
 
 </body>
