@@ -29,5 +29,3 @@ Route::get('/reviews', function () {
 Route::get('/details', function () {
     return view('details');
 });
-
-
