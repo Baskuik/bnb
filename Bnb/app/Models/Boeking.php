@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Boeking extends Model
 {
     protected $fillable = [
+        'user_id',
         'checkin',
         'checkout',
         'volwassenen',

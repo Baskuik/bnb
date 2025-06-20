@@ -10,6 +10,8 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+    @include('layout')
+
     <style>
         body {
             background-image: url('/images/achtergrond.jpg');
@@ -91,7 +93,7 @@
 </head>
 <body>
 
-@include('layout')
+
 
 <div class="form-container">
     <h1>Boeking</h1>
@@ -156,6 +158,7 @@
         <button type="submit">Boeken</button>
     </form>
 </div>
+
 
 <script>
     let geboekteDatums = [];

@@ -88,11 +88,31 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">🏠 Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/booking">📅 Boeking</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/reviews">⭐ Reviews</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/details">ℹ️ Details</a></li>
-                </ul>
+    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="/booking">Boeking</a></li>
+    <li class="nav-item"><a class="nav-link" href="/reviews">Reviews</a></li>
+    <li class="nav-item"><a class="nav-link" href="/details">Details</a></li>
+
+    @auth
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle fa-lg me-1"></i> {{ Auth::user()->name }}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="{{ route('profile') }}">Mijn gegevens</a></li>
+            <li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="dropdown-item" type="submit">Uitloggen</button>
+                </form>
+            </li>
+        </ul>
+    </li>
+    @else
+    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+    @endauth
+</ul>
+
             </div>
         </div>
     </nav>

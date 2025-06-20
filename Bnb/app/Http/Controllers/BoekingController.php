@@ -42,16 +42,18 @@ class BoekingController extends Controller
         $prijs = $dagen * 110;
 
         $boeking = Boeking::create([
-            'checkin' => $checkinDate->format('Y-m-d'),
-            'checkout' => $checkoutDate->format('Y-m-d'),
-            'volwassenen' => $validated['volwassenen'],
-            'kinderen' => $validated['kinderen'],
-            'voornaam' => $validated['voornaam'],
-            'achternaam' => $validated['achternaam'],
-            'email' => $validated['email'],
-            'telefoon' => $validated['telefoon'],
-            'vragen' => $validated['vragen'],
-        ]);
+    'user_id' => auth()->id(),    // Voeg deze regel toe
+    'checkin' => $checkinDate->format('Y-m-d'),
+    'checkout' => $checkoutDate->format('Y-m-d'),
+    'volwassenen' => $validated['volwassenen'],
+    'kinderen' => $validated['kinderen'],
+    'voornaam' => $validated['voornaam'],
+    'achternaam' => $validated['achternaam'],
+    'email' => $validated['email'],
+    'telefoon' => $validated['telefoon'],
+    'vragen' => $validated['vragen'],
+]);
+
 
         Mail::to($validated['email'])->send(new BoekingBevestiging([
             'voornaam' => $validated['voornaam'],
