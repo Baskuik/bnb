@@ -143,7 +143,7 @@
 }
 
 .faciliteiten-col li i.check {
-    margin-right:8px;
+    margin-right: 8px;
     color: green;
 }
 
@@ -186,7 +186,8 @@
 .ideaal {
     margin-left: 100px;
 }
-.badkamer{
+
+.badkamer {
     margin-left: 60px;
 }
 
@@ -197,6 +198,7 @@
 .wifi-tekst {
     max-width: 300px;
 }
+
 .faciliteiten-col h2 {
     font-size: 18px;
     margin-bottom: 10px;
