@@ -51,3 +51,5 @@ Route::get('/profile', function () {
 
     return view('profile', compact('user', 'boekingen'));
 })->middleware('auth')->name('profile');
+
+Route::get('/api/geboekte-datums', [BoekingController::class, 'geboekteDatums']);

@@ -161,7 +161,8 @@
 
 
 <script>
-    let geboekteDatums = [];
+    $(function () {
+    let geboekteDatums = []; // zorg dat dit ook staat, anders werkt kalender niet
 
     function formatDate(d) {
         let day = ("0" + d.getDate()).slice(-2);
@@ -198,79 +199,79 @@
         });
     }
 
-    $(function () {
-        // ✅ Ophalen van bezette datums
-        $.getJSON("/geboekte-datums", function (data) {
-            geboekteDatums = data;
-            initDatepickers();
-        });
+    function updatePersonOptions() {
+        const volSelect = document.getElementById("volwassenen");
+        const kindSelect = document.getElementById("kinderen");
 
-        // Persoonselectie functionaliteit
-        function updatePersonOptions() {
-            const volSelect = document.getElementById("volwassenen");
-            const kindSelect = document.getElementById("kinderen");
+        const huidigeVol = parseInt(volSelect.value) || 1;
+        const huidigeKind = parseInt(kindSelect.value) || 0;
 
-            const huidigeVol = parseInt(volSelect.value) || 1;
-            const huidigeKind = parseInt(kindSelect.value) || 0;
-
-            kindSelect.innerHTML = "";
-            for (let i = 0; i <= 4 - huidigeVol; i++) {
-                const opt = document.createElement("option");
-                opt.value = i;
-                opt.text = i + (i === 1 ? " kind" : " kinderen");
-                kindSelect.appendChild(opt);
-            }
-            if (huidigeKind <= 4 - huidigeVol) {
-                kindSelect.value = huidigeKind;
-            }
-
-            volSelect.innerHTML = "";
-            for (let i = 1; i <= 4 - huidigeKind; i++) {
-                const opt = document.createElement("option");
-                opt.value = i;
-                opt.text = i + (i === 1 ? " volwassene" : " volwassenen");
-                volSelect.appendChild(opt);
-            }
-            if (huidigeVol <= 4 - huidigeKind) {
-                volSelect.value = huidigeVol;
-            }
-        }
-
-        const vol = document.getElementById("volwassenen");
-        const kind = document.getElementById("kinderen");
-
-        for (let i = 1; i <= 4; i++) {
+        kindSelect.innerHTML = "";
+        for (let i = 0; i <= 4 - huidigeVol; i++) {
             const opt = document.createElement("option");
             opt.value = i;
-            opt.textContent = i + (i === 1 ? " volwassene" : " volwassenen");
-            vol.appendChild(opt);
+            opt.text = i + (i === 1 ? " kind" : " kinderen");
+            kindSelect.appendChild(opt);
         }
-        vol.value = 2;
+        if (huidigeKind <= 4 - huidigeVol) {
+            kindSelect.value = huidigeKind;
+        }
 
-        for (let i = 0; i <= 2; i++) {
+        volSelect.innerHTML = "";
+        for (let i = 1; i <= 4 - huidigeKind; i++) {
             const opt = document.createElement("option");
             opt.value = i;
-            opt.textContent = i + (i === 1 ? " kind" : " kinderen");
-            kind.appendChild(opt);
+            opt.text = i + (i === 1 ? " volwassene" : " volwassenen");
+            volSelect.appendChild(opt);
         }
-        kind.value = 0;
+        if (huidigeVol <= 4 - huidigeKind) {
+            volSelect.value = huidigeVol;
+        }
+    }
 
-        vol.addEventListener("change", updatePersonOptions);
-        kind.addEventListener("change", updatePersonOptions);
+    const vol = document.getElementById("volwassenen");
+    const kind = document.getElementById("kinderen");
 
-        // ✅ Extra validatie op telefoonnummer
-        document.querySelector("form").addEventListener("submit", function (e) {
-            const telefoonInput = document.getElementById("telefoon");
-            const telefoon = telefoonInput.value.trim();
-            const isGeldig = /^\d{8,}$/.test(telefoon);
+    // vul dropdowns standaard
+    for (let i = 1; i <= 4; i++) {
+        const opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = i + (i === 1 ? " volwassene" : " volwassenen");
+        vol.appendChild(opt);
+    }
+    vol.value = 2;
 
-            if (!isGeldig) {
-                e.preventDefault();
-                alert("Voer een geldig telefoonnummer in van minimaal 8 cijfers (alleen cijfers toegestaan).");
-                telefoonInput.focus();
-            }
-        });
+    for (let i = 0; i <= 2; i++) {
+        const opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = i + (i === 1 ? " kind" : " kinderen");
+        kind.appendChild(opt);
+    }
+    kind.value = 0;
+
+    vol.addEventListener("change", updatePersonOptions);
+    kind.addEventListener("change", updatePersonOptions);
+
+    // bel updatePersonOptions zodat alles klopt bij start
+    updatePersonOptions();
+
+    // Telefoon validatie (optioneel)
+    document.querySelector("form").addEventListener("submit", function (e) {
+        const telefoonInput = document.getElementById("telefoon");
+        const telefoon = telefoonInput.value.trim();
+        const isGeldig = /^\d{8,}$/.test(telefoon);
+
+        if (!isGeldig) {
+            e.preventDefault();
+            alert("Voer een geldig telefoonnummer in van minimaal 8 cijfers (alleen cijfers toegestaan).");
+            telefoonInput.focus();
+        }
     });
+
+    geboekteDatums = []; 
+    initDatepickers();
+});
+
 </script>
 
 
