@@ -145,4 +145,20 @@ class BoekingController extends Controller
             'prijs' => $data['prijs']
         ]);
     }
+
+   public function update(Request $request, User $user, Boeking $boeking)
+{
+    $validated = $request->validate([
+        'telefoon' => ['required', 'regex:/^06\d{8}$/'],
+        'incheck_datum' => 'required|date',
+        'uitcheck_datum' => 'required|date|after_or_equal:incheck_datum',
+        'totale_prijs' => 'required|numeric|min:0',
+    ]);
+
+    $boeking->update($validated);
+
+    return redirect()->route('admin.users.boekingen', $user)->with('success', 'Boeking bijgewerkt.');
+}
+
+
 }

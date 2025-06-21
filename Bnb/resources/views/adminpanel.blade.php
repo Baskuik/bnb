@@ -35,6 +35,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm" onclick="return confirm('Weet je zeker dat je deze gebruiker wilt verwijderen?')">Verwijder</button>
+                                <a href="{{ route('admin.users.boekingen', $user) }}" class="btn btn-info btn-sm">Bekijk boekingen</a>
                             </form>
                         </td>
                     </tr>

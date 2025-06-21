@@ -145,7 +145,7 @@
     type="tel"
     name="telefoon"
     id="telefoon"
-    placeholder="Bijv. 0612345678"
+    placeholder="Telefoonnummer"
     required
     pattern="^06\d{8}$"
     title="Het nummer moet beginnen met 06 en precies 10 cijfers bevatten.">

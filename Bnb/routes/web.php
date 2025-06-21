@@ -37,22 +37,27 @@ Route::get('/profile', function () {
 // Admin routes (alleen voor ingelogde admins)
 Route::get('/admin', [AdminController::class, 'index']);
 
-    // Simpele admin dashboard route (indien je alleen een view toont)
-    Route::get('/admin', function () {
-        return view('adminpanel');
-    })->name('adminpanel');
+// Simpele admin dashboard route (indien je alleen een view toont)
+Route::get('/admin', function () {
+    return view('adminpanel');
+})->name('adminpanel');
 
-    // Gebruikersbeheer
-    Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name('dashboard');
+// Gebruikersbeheer
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('dashboard');
 
-        Route::get('/users', [UserController::class, 'ind   ex'])->name('users.index');
-        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-        Route::post('/users', [UserController::class, 'store'])->name('users.store');
-        Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-        Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-    });
+    Route::get('/users', [UserController::class, 'ind   ex'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/users/{user}/boekingen', [UserController::class, 'boekingen'])->name('users.boekingen');
+    Route::get('/users/{user}/boekingen/{boeking}/edit', [UserController::class, 'editBoeking'])->name('users.boekingen.edit');
+    Route::put('/users/{user}/boekingen/{boeking}', [UserController::class, 'updateBoeking'])->name('users.boekingen.update');
+    Route::delete('/users/{user}/boekingen/{boeking}', [UserController::class, 'destroyBoeking'])->name('users.boekingen.destroy');
+});
+
 
 
 
