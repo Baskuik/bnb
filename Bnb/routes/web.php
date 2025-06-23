@@ -5,7 +5,7 @@ use App\Http\Controllers\BoekingController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\IsAdmin;
 
 
 
@@ -41,7 +41,7 @@ Route::get('/profile', function () {
 })->middleware('auth')->name('profile');
 
 //prefix zorg ervoor dat de urls beginnen met admin
-Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
+Route::prefix('admin')->middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('dashboard');
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
