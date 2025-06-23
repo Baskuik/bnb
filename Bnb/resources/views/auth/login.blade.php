@@ -21,6 +21,11 @@
             <button type="submit">Login</button>
         </form>
         <p>Nog geen account? <a href="{{ route('register') }}">Registreer hier</a></p>
+        @if (Route::has('password.request'))
+    <a href="{{ route('password.request') }}">
+        Wachtwoord vergeten?
+    </a>
+@endif
     </div>
 </body>
 
