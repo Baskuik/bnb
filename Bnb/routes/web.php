@@ -41,7 +41,7 @@ Route::get('/profile', function () {
 })->middleware('auth')->name('profile');
 
 //prefix zorg ervoor dat de urls beginnen met admin
-Route::prefix('admin')->middleware(['auth', IsAdmin::class])->group(function () {
+Route::prefix('admin')->middleware(['auth', IsAdmin::class])->name('admin.')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('dashboard');
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
