@@ -10,18 +10,19 @@
         @csrf
         @method('PUT')
         <div class="mb-3">
-            <label>Naam</label>
-            <input type="text" name="name" value="{{ $user->name }}" class="form-control" required>
+            <!--naam en email zijn vooraf ingevuld met de huidige value van de user-->
+            <input type="text" placeholder="Naam" name="name" value="{{ $user->name }}" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label>Email</label>
-            <input type="email" name="email" value="{{ $user->email }}" class="form-control" required>
+            <input type="email" placeholder="Email" name="email" value="{{ $user->email }}" class="form-control" required>
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" name="is_admin" value="1" {{ $user->is_admin ? 'checked' : '' }}>
             <label class="form-check-label">Is admin</label>
         </div>
+        <!--opslaan knop-->
         <button class="btn btn-primary">Opslaan</button>
+        <!--link terug naar adminpanel-->
         <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary">Annuleren</a>
     </form>
 </div>

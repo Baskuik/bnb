@@ -4,12 +4,16 @@
 
 @section('content')
     <div class="container">
+        <!--laat boekingen van [user] zien-->
         <h1>Boekingen van {{ $user->name }}</h1>
 
+        <!--knop om terug naar adminpanel te gaan-->
         <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary mb-3">← Terug naar adminpanel</a>
-
+        
+        <!--wnr user nog geen boekingen heeft laat die dit bericht zien-->
         @if ($boekingen->isEmpty())
             <p>Deze gebruiker heeft nog geen boekingen.</p>
+            <!--wnr user wel boekingen heeft zie je de id, volwassenen, kinderen, telefoon, checkin, checkout, boeking bedrag en wnr de boeking is aangemaakt-->
         @else
             <table class="table">
                 <thead>
@@ -37,9 +41,11 @@
                             <td>€{{ number_format($boeking->bedrag, 2, ',', '.') }}</td>
                             <td>{{ $boeking->created_at->format('d-m-Y') }}</td>
                             <td class="d-flex gap-2 align-items-center">
+                                <!--link naar pagina om boekingen te bewerken-->
                                 <a href="{{ route('admin.users.boekingen.edit', [$user, $boeking]) }}"
                                     class="btn btn-sm btn-primary">Bewerk</a>
 
+                                <!--link om boeking te verwijderen-->
                                 <form action="{{ route('admin.users.boekingen.destroy', [$user, $boeking]) }}" method="POST"
                                     onsubmit="return confirm('Weet je zeker dat je deze boeking wilt verwijderen?');">
                                     @csrf

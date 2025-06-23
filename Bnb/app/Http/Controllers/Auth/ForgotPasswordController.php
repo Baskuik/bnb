@@ -8,23 +8,24 @@ use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
-    // Toon formulier om e-mail in te vullen voor wachtwoord reset link
     public function showLinkRequestForm()
     {
         return view('passwords.email');
     }
 
-    // Verzend de reset link naar het opgegeven e-mail adres
     public function sendResetLinkEmail(Request $request)
     {
+        //email validatie
         $request->validate(['email' => 'required|email']);
 
+        //verstuurd reset link
         $status = Password::sendResetLink(
             $request->only('email')
         );
-
         return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __($status)])
-                    : back()->withErrors(['email' => __($status)]);
+            //wnr de mail succesvol is verstuurd ga je tuerg met sucessbericht
+            ? back()->with(['status' => __($status)])
+            //als het niet lukt krijg je fout melding
+            : back()->withErrors(['email' => __($status)]);
     }
 }

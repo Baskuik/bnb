@@ -74,6 +74,7 @@
     <div class="form-container">
         <h1>Bewerk Boeking</h1>
 
+        <!--checkt of er validatie fouten zijn. als er foouten zijn laat die error zien-->
         @if ($errors->any())
             <div class="error">
                 <ul>
@@ -84,6 +85,7 @@
             </div>
         @endif
 
+        <!--verstuurt de data via post-->
         <form method="POST" action="{{ route('admin.users.boekingen.update', [$user->id, $boeking->id]) }}">
             @csrf
             @method('PUT')
@@ -91,14 +93,17 @@
             <div class="date-group">
                 <div>
                     <label for="checkin">Check-in:</label><br>
+                    <!--vult met de value automatisch huidige incheck datum in-->
                     <input type="text" id="checkin" name="incheck_datum" value="{{ \Carbon\Carbon::parse($boeking->checkin)->format('d-m-Y') }}" required>
                 </div>
                 <div>
                     <label for="checkout">Check-out:</label><br>
+                    <!--vult met de value automatisch huidige uitcheck datum in-->
                     <input type="text" id="checkout" name="uitcheck_datum" value="{{ \Carbon\Carbon::parse($boeking->checkout)->format('d-m-Y') }}" required>
                 </div>
             </div>
 
+            <!--dropdown menu waar je aantal volwassenen en kinderen kan selecteren-->
             <div class="person-group">
                 <div>
                     <label for="volwassenen">Volwassenen:</label><br>
@@ -110,25 +115,31 @@
                 </div>
             </div>
 
+            <!--telefoon nummer invoeren met validatie door value word huidige telefoon nummer ingevuld-->
             <div>
                 <label for="telefoon">Telefoonnummer:</label><br>
                 <input type="tel" name="telefoon" id="telefoon" pattern="^06\d{8}$" title="Het nummer moet beginnen met 06 en precies 10 cijfers bevatten." value="{{ $boeking->telefoon }}" required>
             </div>
 
+            <!--door value word huidige totale bedrag ingevuld-->
             <div>
                 <label for="bedrag">Totaalbedrag (€):</label><br>
                 <input type="text" name="totale_prijs" value="{{ $boeking->bedrag }}" required>
             </div>
 
+            <!--knop om het formulier te verzenden-->
             <button type="submit">Boeking bijwerken</button>
+            <!--link om terug te gaan naar adminpanel-->
             <a href="{{ url('/admin') }}" class="btn btn-secondary" style="margin-left: 10px;">Annuleren</a>
         </form>
     </div>
 
     <script>
         $(function () {
+            //lege array die later data bevat na ingevoerd
             let geboekteDatums = [];
 
+            //zorgt ook dat dag en maand altijd twee cijfers zijn (01, 09)
             function formatDate(d) {
                 let day = ("0" + d.getDate()).slice(-2);
                 let month = ("0" + (d.getMonth() + 1)).slice(-2);
@@ -136,11 +147,16 @@
                 return `${day}-${month}-${year}`;
             }
 
+            //checkt of datum beschikbaar is
+            //functie geeft een array met 1 boolean: true als de datum niet in geboekteDatums zit (dus beschikbaar) anders false
+            //Dit wordt gebruikt door de jQuery UI Datepicker om te bepalen welke data geselecteerd kunnen worden.
             function isDatumBeschikbaar(date) {
                 const formatted = formatDate(date);
                 return [!geboekteDatums.includes(formatted)];
             }
 
+            //#checkin: datum voor inchecken start vanaf vandaag (minDate: 0). toont alleen beschikbare data (beforeShowDay)
+            //#checkout: datum voor uitchecken, start minimaal 1 dag na vandaag (minDate: 1). toont ook alleen beschikbare data
             function initDatepickers() {
                 $("#checkin").datepicker({
                     dateFormat: "dd-mm-yy",
@@ -161,6 +177,9 @@
                 });
             }
 
+            //Ajax-request haalt geboekte datums op van de server via /api/geboekte-datums
+            //Bij succes wordt geboekteDatums(lege array op het begin) gevuld met deze data en word de kalender(datepickers) gestart
+            //Zelfs als het ophalen van geboekte datums faalt, wordt de kalender (datepicker) toch gestart
             $.ajax({
                 url: "/api/geboekte-datums",
                 method: "GET",
@@ -175,9 +194,11 @@
                 }
             });
 
+
             const vol = document.getElementById("volwassenen");
             const kind = document.getElementById("kinderen");
 
+            //voegt opties toe aan het volwassenen-select-menu van 1 tot 4 volwassenen
             for (let i = 1; i <= 4; i++) {
                 const opt = document.createElement("option");
                 opt.value = i;
@@ -185,8 +206,11 @@
                 vol.appendChild(opt);
             }
 
+            //zet het geselecteerde aantal volwassenen op de huidige value van de boeking
             vol.value = "{{ $boeking->volwassenen }}";
 
+            //Deze functie zorgt dat het aantal kinderen dat geselecteerd kan worden, aangepast wordt op basis van het aantal volwassenen (max totaal 4 personen)
+            //Als het huidige aantal kinderen niet meer kan, wordt het bijgesteld naar het maximum.
             function updatePersonOptions() {
                 const volwassenenAantal = parseInt(vol.value);
                 const maxKinderen = 4 - volwassenenAantal;
@@ -208,19 +232,21 @@
                 }
             }
 
+            //zorgt dat elke keer als de gebruiker een ander aantal volwassenen of kinderen kiest dat de opties worden geupdate
             vol.addEventListener("change", updatePersonOptions);
             kind.addEventListener("change", updatePersonOptions);
 
-            // ✅ Stel huidige waarden in
+            //zet het aantal kinderen naar de huidige value en past de opties aan
             kind.value = "{{ $boeking->kinderen }}";
             updatePersonOptions();
 
-            // ✅ Telefoonvalidatie
+            //bij het versturen van het formulier wordt het telefoonnummer gevalidate
             document.querySelector("form").addEventListener("submit", function (e) {
                 const telefoonInput = document.getElementById("telefoon");
                 const telefoon = telefoonInput.value.trim();
                 const isGeldig = /^06\d{8}$/.test(telefoon);
 
+                //als het nummer ongeldig is wordt het formulier niet verzonden en krijgt de user een waarschuwing
                 if (!isGeldig) {
                     e.preventDefault();
                     alert("Voer een geldig Nederlands mobiel nummer in dat begint met 06 en precies 10 cijfers bevat.");
