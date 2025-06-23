@@ -10,6 +10,7 @@
 <body>
     <div class="login-container">
         <h2>Inloggen</h2>
+        <!-- geeft error wnr login mislukt -->
         @if ($errors->any())
             <div class="error">{{ $errors->first() }}</div>
         @endif

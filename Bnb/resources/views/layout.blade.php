@@ -54,8 +54,6 @@
             align-items: bottom;
         }
 
-
-
         footer {
             background-color: #f8f9fa;
             padding: 20px 0;
@@ -96,7 +94,6 @@
                     <li class="nav-item"><a class="nav-link" href="/reviews">Reviews</a></li>
                     <li class="nav-item"><a class="nav-link" href="/details">Details</a></li>
 
-
                     @auth
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
@@ -105,23 +102,21 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="{{ route('profile') }}">Mijn gegevens</a></li>
-                                <li>
-                                    @if (Auth::user()->is_admin)
-                                <li><a class="dropdown-item" href="/admin">Adminpanel</a></li>
+                                @if (Auth::user()->is_admin)
+                                    <li><a class="dropdown-item" href="/admin">Adminpanel</a></li>
                                 @endif
-
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button class="dropdown-item" type="submit">Uitloggen</button>
-                                </form>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button class="dropdown-item" type="submit">Uitloggen</button>
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
-                    </ul>
-                    </li>
-                @else
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                @endauth
+                    @else
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                    @endauth
                 </ul>
-
             </div>
         </div>
     </nav>
@@ -129,6 +124,14 @@
     {{-- Pagina-inhoud --}}
     <main>
         <div class="page-container">
+
+            {{-- ✅ Foutmelding tonen als user geen toegang heeft (bijv. geen admin) --}}
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             @yield('content')
         </div>
     </main>

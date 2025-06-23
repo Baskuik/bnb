@@ -8,6 +8,7 @@
 <body>
     <div class="register-container">
         <h2>Registreren</h2>
+        <!-- geeft validatiefout wnr er iets mis gaat zoals ongeldige email of als het ww niet overheen komt met elkaar-->
         @if ($errors->any())
             <div class="error">{{ $errors->first() }}</div>
         @endif

@@ -1,0 +1,6 @@
+Folder PATH listing for volume Windows-SSD
+Volume serial number is 3C4B-72BE
+C:\USERS\BAS15\DOCUMENTS\GITHUB\BNB\BNB\BNB\ROUTES
+Invalid path - \USERS\BAS15\DOCUMENTS\GITHUB\BNB\BNB\BNB\ROUTES
+No subfolders exist 
+
