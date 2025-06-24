@@ -140,7 +140,7 @@
             <input type="text" name="achternaam" placeholder="Achternaam" required><br><br>
             <input type="email" name="email" placeholder="E-mailadres" required>
 
-            <!-- ✅ Telefoon met pattern voor validatie -->
+            
             <input
     type="tel"
     name="telefoon"
