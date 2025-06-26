@@ -17,7 +17,8 @@
             <input type="email" placeholder="Email" name="email" value="{{ $user->email }}" class="form-control" required>
         </div>
         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" name="is_admin" value="1" {{ $user->is_admin ? 'checked' : '' }}>
+            <input type="hidden" name="is_admin" value="0">
+<input type="checkbox" name="is_admin" value="1" {{ $user->is_admin ? 'checked' : '' }}>
             <label class="form-check-label">Is admin</label>
         </div>
         <!--opslaan knop-->
