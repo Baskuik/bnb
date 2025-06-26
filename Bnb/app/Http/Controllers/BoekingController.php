@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Boeking;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\BoekingBevestiging;
+use App\Mail\BoekingBevestigingMail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+use App\Models\User;
 
 class BoekingController extends Controller
 {
@@ -28,7 +30,6 @@ class BoekingController extends Controller
         $checkinDate = Carbon::createFromFormat('d-m-Y', $validated['checkin']);
         $checkoutDate = Carbon::createFromFormat('d-m-Y', $validated['checkout']);
 
-        // Controle of data al geboekt is
         $bestaat = Boeking::where(function ($query) use ($checkinDate, $checkoutDate) {
             $query->whereBetween('checkin', [$checkinDate, $checkoutDate->copy()->subDay()])
                 ->orWhereBetween('checkout', [$checkinDate->copy()->addDay(), $checkoutDate]);
@@ -41,51 +42,63 @@ class BoekingController extends Controller
         $dagen = $checkinDate->diffInDays($checkoutDate);
         $prijs = $dagen * 120;
 
-        $boeking = Boeking::create([
-    'user_id' => auth()->id(),
-    'checkin' => $checkinDate->format('Y-m-d'),
-    'checkout' => $checkoutDate->format('Y-m-d'),
-    'volwassenen' => $validated['volwassenen'],
-    'kinderen' => $validated['kinderen'],
-    'bedrag' =>  $prijs, 
-    'voornaam' => $validated['voornaam'],
-    'achternaam' => $validated['achternaam'],
-    'email' => $validated['email'],
-    'telefoon' => $validated['telefoon'],
-    'vragen' => $validated['vragen'],
-]);
-
-
-
-        Mail::to($validated['email'])->send(new BoekingBevestiging([
+        $data = [
+            'checkin' => $validated['checkin'],
+            'checkout' => $validated['checkout'],
+            'volwassenen' => $validated['volwassenen'],
+            'kinderen' => $validated['kinderen'],
             'voornaam' => $validated['voornaam'],
             'achternaam' => $validated['achternaam'],
             'email' => $validated['email'],
-            'checkin' => $validated['checkin'],
-            'checkout' => $validated['checkout'],
+            'telefoon' => $validated['telefoon'],
+            'vragen' => $validated['vragen'],
             'dagen' => $dagen,
-            'volwassenen' => $validated['volwassenen'],
-            'kinderen' => $validated['kinderen'],
-            'prijs' => $prijs
-        ]));
+            'prijs' => $prijs,
+        ];
 
-        Session::put('laatste_boeking', [
-            'voornaam' => $validated['voornaam'],
-            'achternaam' => $validated['achternaam'],
-            'checkin' => $validated['checkin'],
-            'checkout' => $validated['checkout'],
-            'dagen' => $dagen,
-            'volwassenen' => $validated['volwassenen'],
-            'kinderen' => $validated['kinderen'],
-            'prijs' => $prijs
+        $token = Str::uuid()->toString();
+        Session::put('bevestig_token', $token);
+        Session::put('bevestig_data', $data);
+
+        $bevestigUrl = route('boeking.confirm', ['token' => $token]);
+
+        Mail::to($validated['email'])->send(new BoekingBevestigingMail($data, $bevestigUrl));
+
+        return view('bevestiging_verzonden');
+    }
+
+    public function confirm(Request $request)
+    {
+        $token = $request->query('token');
+        $sessionToken = Session::get('bevestig_token');
+        $data = Session::get('bevestig_data');
+
+        if (!$token || $token !== $sessionToken || !$data) {
+            return redirect('/')->with('error', 'Ongeldige of verlopen bevestigingslink.');
+        }
+
+        $checkinDate = Carbon::createFromFormat('d-m-Y', $data['checkin']);
+        $checkoutDate = Carbon::createFromFormat('d-m-Y', $data['checkout']);
+
+        Boeking::create([
+            'user_id' => auth()->id(),
+            'checkin' => $checkinDate->format('Y-m-d'),
+            'checkout' => $checkoutDate->format('Y-m-d'),
+            'volwassenen' => $data['volwassenen'],
+            'kinderen' => $data['kinderen'],
+            'bedrag' => $data['prijs'],
+            'voornaam' => $data['voornaam'],
+            'achternaam' => $data['achternaam'],
+            'email' => $data['email'],
+            'telefoon' => $data['telefoon'],
+            'vragen' => $data['vragen'],
         ]);
 
-        return view('bedankt', [
-            'voornaam' => $validated['voornaam'],
-            'achternaam' => $validated['achternaam'],
-            'dagen' => $dagen,
-            'prijs' => $prijs
-        ]);
+        Session::forget('bevestig_token');
+        Session::put('laatste_boeking', $data);
+        Session::forget('bevestig_data');
+
+        return redirect()->route('boeking.bedankt');
     }
 
     public function geboekteDatums()
@@ -115,7 +128,8 @@ class BoekingController extends Controller
 
         return view('betaal', [
             'dagen' => $data['dagen'],
-            'prijs' => $data['prijs']
+            'prijs' => $data['prijs'],
+            'email' => $data['email']
         ]);
     }
 
@@ -146,19 +160,17 @@ class BoekingController extends Controller
         ]);
     }
 
-   public function update(Request $request, User $user, Boeking $boeking)
-{
-    $validated = $request->validate([
-        'telefoon' => ['required', 'regex:/^06\d{8}$/'],
-        'incheck_datum' => 'required|date',
-        'uitcheck_datum' => 'required|date|after_or_equal:incheck_datum',
-        'totale_prijs' => 'required|numeric|min:0',
-    ]);
+    public function update(Request $request, User $user, Boeking $boeking)
+    {
+        $validated = $request->validate([
+            'telefoon' => ['required', 'regex:/^06\d{8}$/'],
+            'incheck_datum' => 'required|date',
+            'uitcheck_datum' => 'required|date|after_or_equal:incheck_datum',
+            'totale_prijs' => 'required|numeric|min:0',
+        ]);
 
-    $boeking->update($validated);
+        $boeking->update($validated);
 
-    return redirect()->route('admin.users.boekingen', $user)->with('success', 'Boeking bijgewerkt.');
-}
-
-
+        return redirect()->route('admin.users.boekingen', $user)->with('success', 'Boeking bijgewerkt.');
+    }
 }

@@ -6,10 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-@extends('layout')
-@section('content')
 <body>
-    pagina word aan gewerkt
+    <h1>Bevestiging verzonden!</h1>
+<p>Bedankt voor je boeking, je ontvangt binnenkort een e-mail.</p>
+
 </body>
-@endsection
 </html>

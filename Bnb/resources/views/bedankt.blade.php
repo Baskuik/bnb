@@ -42,8 +42,8 @@
     <p>Je hebt geboekt voor <strong>{{ $dagen }}</strong> {{ $dagen == 1 ? 'dag' : 'dagen' }}.</p>
     <div class="prijs">Totaal te betalen: <strong>€{{ number_format($prijs, 2, ',', '.') }}</strong></div>
 
-    <a class="knop" href="{{ route('boeking.betaalpagina') }}">
-        Ga door met betalen
+    <a class="knop" href="/">
+        Ga terug naar home
     </a>
 </body>
 </html>

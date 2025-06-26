@@ -66,6 +66,9 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 
 
 
+Route::get('/boeking/confirm', [BoekingController::class, 'confirm'])->name('boeking.confirm');
+
+
 
 
 
