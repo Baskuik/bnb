@@ -39,7 +39,7 @@ class BoekingController extends Controller
         }
 
         $dagen = $checkinDate->diffInDays($checkoutDate);
-        $prijs = $dagen * 110;
+        $prijs = $dagen * 120;
 
         $boeking = Boeking::create([
     'user_id' => auth()->id(),

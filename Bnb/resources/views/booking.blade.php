@@ -5,6 +5,7 @@
     <title>Boeking</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="{{ asset('css/bookingstyle.css') }}" />
     <!-- jQuery UI voor datepicker -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -12,84 +13,6 @@
 
     @extends('layout')
 @section('content')
-    <style>
-        body {
-            background-image: url('/images/achtergrond.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 40px;
-        }
-
-        .form-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        h1 {
-            background-color: #0e5aa7;
-            color: white;
-            display: inline-block;
-            padding: 10px 30px;
-            border-radius: 4px;
-        }
-
-        form {
-            margin-top: 30px;
-        }
-
-        input, select, textarea {
-            padding: 10px;
-            margin: 10px 5px;
-            border: 2px solid #0e5aa7;
-            border-radius: 4px;
-        }
-
-        .date-group, .person-group {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        textarea {
-            width: calc(90% - 20px);
-            height: 100px;
-            border-radius: 10px;
-        }
-
-        button {
-            margin-top: 20px;
-            padding: 10px 30px;
-            background-color: #0e5aa7;
-            color: white;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 6px;
-        }
-
-        button:hover {
-            background-color: #084d8a;
-        }
-
-        .error {
-            color: red;
-            margin-top: 10px;
-        }
-
-        .error ul {
-            list-style: none;
-            padding: 0;
-        }
-    </style>
 </head>
 <body>
 

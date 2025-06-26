@@ -13,6 +13,7 @@
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
+
     <style>
         html,
         body {
@@ -30,7 +31,7 @@
 
         .navbar {
             background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.5);
         }
 
         .navbar-brand img {
