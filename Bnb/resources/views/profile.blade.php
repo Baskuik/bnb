@@ -22,7 +22,6 @@
                 <th>Aantal volwassenen</th>
                 <th>Aantal kinderen</th>
                 <th>Totaal bedrag</th>
-                <!-- Voeg meer kolommen toe indien gewenst -->
             </tr>
         </thead>
         <tbody>
@@ -34,7 +33,6 @@
                     <td>{{ $boeking->volwassenen}}</td>
                     <td>{{ $boeking->kinderen}}</td>
                     <td>€{{ number_format($boeking->bedrag, 2, ',', '.') }}</td>
-
 
                 </tr>
             @endforeach
